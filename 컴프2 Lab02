@@ -1,0 +1,148 @@
+// Matrix 클래스
+import java.util.Arrays;
+
+public class Matrix {
+    // matrix 필드 선언
+    private double[][] matrix;
+
+    // 생성자 : 2차원 배열을 입력 받아 행렬 객체 초기화
+    public Matrix(double arr[][]){
+        // 입력받은 배열을 그대로 복사하여 내부 필드에 저장
+        this.matrix = new double[arr.length][arr[0].length];
+        for (int i = 0; i < arr.length; i++) {
+            System.arraycopy(arr[i], 0, this.matrix[i], 0, arr[i].length);
+        }
+    }
+
+	// 행렬의 특정 요소 가져오기
+	public double getElement(int row, int column){
+        return matrix[row][column];
+    }
+
+    public void setElement(int row, int column, double value){
+        matrix[row][column] = value;
+    }
+
+    // 행렬의 덧셈
+    public static Matrix add(Matrix m1, Matrix m2) {
+        if(m1.matrix[0].length != m2.matrix[0].length ||
+                m1.matrix.length != m2.matrix.length) {
+            System.out.println("두 행렬의 행과 열의 길이가 같아야 합니다.");
+            return null;
+        } else {
+            double[][] tempArr = new double[m1.matrix.length][m1.matrix[0].length];
+            for(int i = 0; i < tempArr.length; i++)
+                for(int j = 0; j < tempArr[0].length; j++) {
+                    tempArr[i][j] = m1.matrix[i][j] + m2.matrix[i][j];
+                }
+            return new Matrix(tempArr);
+        }
+    }
+
+    // 헹렬의 뺄셈
+    public static Matrix subtract(Matrix m1, Matrix m2) {
+        if(m1.matrix[0].length != m2.matrix[0].length ||
+                m1.matrix.length != m2.matrix.length) {
+            System.out.println("두 행렬의 행과 열의 길이가 같아야 합니다.");
+            return null;
+        } else {
+            double[][] tempArr = new double[m1.matrix.length][m1.matrix[0].length];
+            for(int i = 0; i < tempArr.length; i++)
+                for(int j = 0; j < tempArr[0].length; j++) {
+                    tempArr[i][j] = m1.matrix[i][j] - m2.matrix[i][j];
+                }
+            return new Matrix(tempArr);
+        }
+    }
+
+    // 행렬의 곱셈
+    public static Matrix multiply(Matrix m1, Matrix m2) {
+        if(m1.matrix[0].length != m2.matrix[0].length ||
+                m1.matrix.length != m2.matrix.length) {
+            System.out.println("두 행렬의 행과 열의 길이가 같아야 합니다.");
+            return null;
+        } else {
+            double[][] tempArr = new double[m1.matrix.length][m1.matrix[0].length];
+            for(int i = 0; i < tempArr.length; i++)
+                for(int j = 0; j < tempArr[0].length; j++) {
+                    tempArr[i][j] = m1.matrix[i][j] * m2.matrix[i][j];
+                }
+            return new Matrix(tempArr);
+        }
+    }
+
+    // 행렬을 문자열로 바꿔서 출력
+    public String toString() {
+        StringBuilder temp = new StringBuilder();
+        for(int i = 0; i<this.matrix.length; i++) {
+            temp.append(Arrays.toString(this.matrix[i]));
+            if(i != this.matrix.length - 1)
+                temp.append("\n ");
+        }
+        return "[" + temp +"]";
+    }
+}
+
+// Circle 클래스
+
+public Class Circle extends Shape {
+	private double radius;
+
+	private Circle (double radius) {
+		this.radius = radius;
+	}
+
+	@Override 
+	public double area() {
+		return Math.PI * Math.pow(radius,2);
+	}
+
+	@Override
+	public double perimeter() {
+		return 2 * Math.PI * radius;
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + "원," + "둘레: " + String.format("%.2f", perimeter()) + "cm,"
+						+ "넓이: " + String.format("%.2f". area()) + "cm"; 
+	}
+}
+
+// Rectangle 클래스
+
+public Class Rectangle extends Shape{
+	private double width;
+	private double heigth;
+ 
+public Rectangle(double width, double height) {
+	this.width = width;
+	this.heigth = heigth;
+ }
+
+	@Override
+	public double area() {
+return width * heigth;
+	}
+
+	@Override
+	public double perimeter() {
+return 2 * (width + heigth);
+	}
+
+  @Override
+	public String toString(){
+		return super.toString() + + "사각형," + "둘레: " + String.format("%.2f", perimeter()) + "cm,"
+						+ "넓이: " + String.format("%.2f". area()) + "cm"; 
+	}
+}
+
+// Triangle 클래스
+
+Public Class Triangel extends Shape{
+	private double side;
+
+	public Triangle(double side){
+		this.side = side;
+	}
+} 
